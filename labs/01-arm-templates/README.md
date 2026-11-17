@@ -18,6 +18,11 @@ Write an ARM template that deploys a storage account, then make it reusable by a
 - **Invalid storage name** when braces `{}` were copied into the parameter value. Fixed by removing them.
 - **Wrong command** when a line was missing the second dash in `--template-file`. Fixed by re-running the full command.
 
+## Parameter test and revert
+- Deployed with `storageSKU=Standard_GRS` to check that the SKU parameter changes the account. It updated the existing account instead of creating a new one.
+- Redeployed with `storageSKU=Standard_LRS` to return the account to the template's default and keep costs low.
+- Confirmed the SKU with `az storage account show`.
+
 ## Key takeaways
 - Parameters let one template deploy different values without editing the file.
 - Git tracks files, not folders; `.gitkeep` keeps empty folders in the repo.
